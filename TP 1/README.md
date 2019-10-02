@@ -245,7 +245,7 @@ j'ai aussi fait la manip avec vagrant pour tester sauf que je n'ai pas trouvé d
 du coup je l'ai fait sur centos7 et ça fonctionne bien j'ai up 3 VM sur 2 network  avec la vm master en Routeur pour donner internet  aux 2 autres 
 ## Autres applications et métrologie 
 
-
+### iftop 
 iftop permet de voir toutes les connexion de la machine et de représenter visuellement le débit 
 cela permet de voir quel tache ou process pompe de la connexion  
 il existe différentes options qui permettent de trier les données 
