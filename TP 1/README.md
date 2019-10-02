@@ -237,8 +237,8 @@ R1(config)#do sh ip int br
 Interface              IP-Address      OK? Method Status                Protocol
 Ethernet0/0            unassigned      YES unset  administratively down down
 GigabitEthernet0/0     10.0.0.145 YES DHCP   up                    up
-GigabitEthernet1/0     192.168.200.254 YES manual up                    up
-GigabitEthernet2/0     192.168.100.254 YES manual up                    up
+GigabitEthernet1/0     192.168.100.254 YES manual up                    up
+GigabitEthernet2/0     192.168.200.254 YES manual up                    up
 ```
 Une fois la config centos de faite je peux ping google en passant par le routeur r1 
 j'ai aussi fait la manip avec vagrant pour tester sauf que je n'ai pas trouvé de box centos8
