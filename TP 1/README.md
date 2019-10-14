@@ -10,7 +10,7 @@
 
 Les cartes réseaux ont récupéré une ip via le DHCP que j'ai config via vmware.
 
-Baux DHCP Host-only
+Bail DHCP Host-only
 
 	ADDRESS=192.168.216.129
 	NETMASK=255.255.255.0
@@ -24,7 +24,7 @@ Baux DHCP Host-only
 	DOMAINNAME=localdomain
 	CLIENTID=01000c29d42994
 
-Baux DHCP NAT
+Bail DHCP NAT
 
 	ADDRESS=192.168.178.130
 	NETMASK=255.255.255.0
