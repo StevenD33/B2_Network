@@ -33,11 +33,11 @@
 ### Checklist
 
 - [x] **1.** setup la topo dans GNS  
-- [x]**2.** mettre en place les VLANs  
-- [x]**3.** définir les IPs statiques des admins, guests et routeurs  
-- [x]**4.** (optionnel-mais-conseillé) mettre en place le serveur DHCP  
-- [x]**5.** (optionnel-mais-conseillé) mettre en place le serveur DNS  
-- [x]**6.** (optionnel) mettre en place le serveur Web  
+- [x] **2.** mettre en place les VLANs  
+- [x] **3.** définir les IPs statiques des admins, guests et routeurs  
+- [x] **4.** (optionnel-mais-conseillé) mettre en place le serveur DHCP  
+- [x] **5.** (optionnel-mais-conseillé) mettre en place le serveur DNS  
+- [x] **6.** (optionnel) mettre en place le serveur Web  
 
 
 
