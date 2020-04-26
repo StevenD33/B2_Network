@@ -168,7 +168,7 @@ et je confgure ensuite un des vpcs pour vérifier que le dhcp fonctionne.
 
 
 
-on peut voir que le DORA à bien fonctionné et je peux même le voir dans mon wireshark voir pcap. 
+on peut voir que le DORA à bien fonctionné et je peux même le voir dans mon wireshark voir [pcap](https://github.com/StevenDias33/B2_Network/blob/master/TP%204/dora.pcapng) . 
 
 ```
 guest3> ip dhcp
