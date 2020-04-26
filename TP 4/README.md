@@ -4,7 +4,7 @@
 
 ### Schéma GNS
 
-<div align="center"><img src="./pic/topo.png" /></div>
+
 
 ### Tableau des réseaux
 
@@ -43,7 +43,7 @@
 
 ### 1. Setup la Topo dans GNS 
 
-[](/images/topo.png)
+![oui](https://github.com/StevenDias33/B2_Network/blob/master/TP%204/images/topo.png)
 
 
 
