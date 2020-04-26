@@ -219,29 +219,23 @@ et lors que je curl j'ai bien la page par défaut de nginx.
 
 #### ARP Spoofing
 
-Usurpation d'identité L2/L3 : on usurpe l'adresse IP d'une machine du réseau en empoisonnant la table ARP de la victime.
+Pour faire de l'arp spoof il y'a plusieurs maniere de procéder par exmple on peut utiliser arpspoof sur kali 
 
-Je recommande :
-* [la commande `arping`](https://sandilands.info/sgordon/arp-spoofing-on-wired-lan)
-* la librairie Python `scapy`
-  * vous trouverez BEAUCOUP d'exemples sur internet
+En premier lieu on check la passerelle avec :
+ip route
 
-Le concept :
-* l'attaquant envoie un ARP request (en broadcast donc)
-  * il demande l'IP de la victime et précise
-    * sa vraie MAC en source
-    * une fausse IP en source
-* la victime reçoit le message
-  * la victime répond à l'attaquant avec un ARP reply (l'attaquant obtient l'adresse MAC de la victime)
-  * **la victime inscrit dans sa table ARP les infos de la trame reçue** :
-    * désormais la victime pense que l'IP envoyée (fausse) correspond à la MAC envoyée (celle de l'attaquant)
-* répéter l'échange pour maintenir l'attaque en place
-  * les entrées dans les tables ARP sont temporaires (de 60 à 120 secondes en général)
+On scan le réseau:
+nmap  192.168.1.0/24
 
-Pour mettre en place un man-in-the middle :
-* l'attaquant usurpe l'IP de la victime auprès de la passerelle du réseau
-* l'attaquant usurpe l'IP de la passerelle auprès de la victime
-* tous les messages que la victime envoie vers d'autres reéseaux (internet par exemple) passent par l'attaquant
+Now start the ARP Poisoning/Spoofing:
+arpspoof -i eth0 -t Ipvictime -r Gateway
+-i interface.
+-t target.
+-r default gateway.
+
+
+En train d'écrire
+
 
 #### DHCP Spoofing
 
