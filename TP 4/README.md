@@ -234,45 +234,41 @@ arpspoof -i eth0 -t Ipvictime -r Gateway
 -r default gateway.
 
 
-En train d'écrire
+Une fois cela fait l'arpspoof est fonctionnel et les messages passent par l'attaquant voir arpspoof.pcap
 
 
 #### DHCP Spoofing
 
-Mettre en place un rogue DHCP, aussi appelé "DHCP server of the doom" *(padutou)*.  
-On met en place un serveur DHCP, et on file des IPs aux clients. On tire alors profit des *options DHCP* afin de fournir d'autres fausses infos aux clients. Principalement : adresse du serveur DNS du réseau, adresse de la passerelle.
+``` ettercap -Tzq -M dhcp:/255.255.255.0/10.5.30.11 ```
+```
+DHCP : [00:0C:29:FF:09:88] DISCOVER 
+DHCP: [00:0C:29:FF:09:88] REQUEST 10.5.20.142
+DHCP spoofing: fake ACK [00:0C:29:FF:09:88] assigned to 10.5.20.142
+DHCP: [10.5.20.142] ACK : 192.168.80.1 255.255.255.0 10.5.20.254 DNS 10.5.30.11 
+DHCP: [10.5.20.253] ACK : 192.168.80.1 255.255.255.0 10.5.20.254 DNS 10.5.30.11 "tp4.b2"
+```
 
-On peut donc définir arbitrairement l'adresse de passerelle et celle du DNS pour les clients. Cela mène à des attaques Man-in-the-middle et DNS spoofing.
 
-#### DNS Spoofing
-
-Il est nécessaire de faire l'ARP spoofing ou le DHCP spoofing pour ça.
-
-Effectuer des réponses DNS fallacieuses. Une fois l'identité du serveur DNS ou de la passerelle d'un réseau usurpée, on peut répondre aux requêtes DNS des clients. 
-
-#### Messing up with VLANs
-
-Forcer un switch à négocier un trunk pour récupérer tout le trafic et envoyer des messages à tout le réseau.
-
-Une fois le trunk négocié, il est possible de :
-* voir toutes les trames broadcast envoyées (entre autres)
-  * donc on récupère des MAC, des IPs, et le VLAN associé
-* envoyer des trames dans n'importe quel VLAN
-  * enfin, n'importe quel VLAN auquel le switch avec qui on a négocié a accès
 
 ### B. Defensive
 
-#### ARP Spoofing
+#### ARP Spoofing / DHCP Spoofing / Messing up with VLANs
 
-Mise en place d'un *IP source guard*.
+Pour mettre en place une défense contre l'arp spoof le DHCP spoof et le fait qu'une personne force un switch à négocier des trunks on fait 
 
-#### DHCP Spoofing
+```
+conf t 
+ip dhcp snooping
+ip dhcp snooping vlan 10 20 30
+interface fastethernet 0/1
+no ip dhcp snooping trust
+ip verify source vlan dhcp-snooping
 
-Mise en place de *DHCP snooping* qui permet d'interdire des trames DHCP sur les ports non-autorisés.
+```
 
-#### Messing up with VLANs
+on peut aussi configurer une ip static bindé sur le port 
+```
+ip source binding mac_address vlan vlan-id ip-address interface interface_name
+```
 
-Mise en place de contre-mesures contre les attaques liées aux VLANs :
-* désactiver explicitement les ports non utilisés
-  * *a minima* désactiver la négociation
-* le mécanisme *IP source guard* peut aussi aider
+à la fin de la configuration on fait un show ip verify source pour bien voir que la configuration est appliqué. 
